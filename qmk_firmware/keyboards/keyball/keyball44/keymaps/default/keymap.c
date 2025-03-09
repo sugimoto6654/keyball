@@ -65,20 +65,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ---------+--------+---------+---------+--------+--------+                     +---------+--------+--------+--------+---------+-----------
         KBC_RST , SCRL_TO, SCRL_DVD, SCRL_DVI, XXXXXXX, XXXXXXX,                       RGB_MOD , RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW, RGB_M_SN,
     // ---------+--------+---------+---------+--------+--------+                     +---------+--------+--------+--------+---------+-----------
-        KBC_SAVE, AML_TO , AML_D50 , AML_I50 , XXXXXXX, XXXXXXX,                       RGB_RMOD, RGB_M_K, RGB_M_X, RGB_M_G, RGB_M_T , XXXXXXX ,
+        KBC_SAVE, AML_TO , AML_D50 , AML_I50 , XXXXXXX, QK_BOOT,                       RGB_RMOD, RGB_M_K, RGB_M_X, RGB_M_G, RGB_M_T , XXXXXXX ,
     // ---------+--------+---------+---------+--------+--------+---------     -------+---------+--------+--------+--------+---------+-----------
                             _______, _______ , _______, _______, _______,     _______, _______ ,         XXXXXXX, XXXXXXX, RGB_TOG
     //                   +---------+---------+--------+--------+---------     -------+---------+        +--------+--------+----------
   ),
 };
+
 // clang-format on
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == 3);
-    return state;
-}
-
 #ifdef OLED_ENABLE
 
 #    include "lib/oledkit/oledkit.h"
