@@ -99,9 +99,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_SCLN:
             if (!record->tap.count && record->event.pressed) {
-                tap_code(SCRL_MO);
+                tap_code16(SCRL_MO);
                 return false;
             }
+            return true;
+        default:
             return true;
     }
     return true;
