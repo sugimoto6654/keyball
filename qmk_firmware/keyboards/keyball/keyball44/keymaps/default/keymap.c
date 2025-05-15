@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ---------+--------+---------+---------+--------+--------+                     +---------+--------+--------+--------+---------+-----------
         XXXXXXX , CPI_D1K, CPI_D100, CPI_I100, CPI_I1K, XXXXXXX,                       RGB_HUD , RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD , RGB_VAI ,
     // ---------+--------+---------+---------+--------+--------+                     +---------+--------+--------+--------+---------+-----------
-        KBC_RST , SCRL_TO, SCRL_DVD, SCRL_DVI, XXXXXXX, XXXXXXX,                       RGB_MOD , RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW, RGB_M_SN,
+        KBC_RST , SCRL_TO, SCRL_DVD, SCRL_DVI, XXXXXXX, XXXXXXX,                       RGB_MOD , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX , XXXXXXX ,
     // ---------+--------+---------+---------+--------+--------+                     +---------+--------+--------+--------+---------+-----------
         KBC_SAVE, AML_TO , AML_D50 , AML_I50 , XXXXXXX, QK_BOOT,                       RGB_RMOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX , XXXXXXX ,
     // ---------+--------+---------+---------+--------+--------+---------     -------+---------+--------+--------+--------+---------+-----------
