@@ -55,6 +55,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                     tap_code16(LCTL(KC_V));
                 }
             }
+            return false;
         case CUT_X:
             if (recored->event.pressed) {
                 x_timer = timer_read();
@@ -65,6 +66,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                     tap_code16(LCTL(KC_X));
                 }
             }
+            return false;
         case SCH_S:
             if (recored->event.pressed) {
                 s_timer = timer_read();
@@ -75,6 +77,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                     tap_code16(KC_WSCH);
                 }
             }
+            return false;
     }
     return true;
 }
