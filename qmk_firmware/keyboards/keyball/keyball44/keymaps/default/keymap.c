@@ -24,7 +24,7 @@ enum {
     CPY_C,
     PST_V,
     CUT_X,
-}
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
     static uint16_t c_timer = 0;
