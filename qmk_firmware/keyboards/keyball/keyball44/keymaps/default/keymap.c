@@ -30,7 +30,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
     static uint16_t c_timer = 0;
     static uint16_t v_timer = 0;
     static uint16_t x_timer = 0;
-    static uint16_t s_timer = 0;
 
     switch (keycode) {
         case CPY_C:
