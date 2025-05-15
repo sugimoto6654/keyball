@@ -24,7 +24,7 @@ enum {
     CPY_C,
     PST_V,
     CUT_X,
-    SCH_S,
+    NTB_T,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
@@ -67,14 +67,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                 }
             }
             return false;
-        case SCH_S:
+        case NTB_T:
             if (recored->event.pressed) {
                 s_timer = timer_read();
             } else {
                 if (timer_elapsed(s_timer) < TAPPING_TERM) {
-                    tap_code(KC_S);
+                    tap_code(KC_T);
                 } else {
-                    tap_code16(KC_WSCH);
+                    tap_code16(LCTL(KC_T));
                 }
             }
             return false;
@@ -87,9 +87,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [0] = LAYOUT_universal(
     // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , KC_T  ,                              KC_Y          , KC_U, KC_I       , KC_O   , KC_P          , KC_MINS,
+        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , NTB_T ,                              KC_Y          , KC_U, KC_I       , KC_O   , KC_P          , KC_MINS,
     // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        KC_TAB        , KC_A, SCH_S  , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, LT(3, KC_K), KC_L   , LT(3, KC_SCLN), KC_QUOT,
+        KC_TAB        , KC_A, KC_S   , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, LT(3, KC_K), KC_L   , LT(3, KC_SCLN), KC_QUOT,
     // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
         KC_LSFT       , KC_Z, CUT_X  , CPY_C  , PST_V          , KC_B  ,                              KC_N          , KC_M, KC_COMM    , KC_DOT , KC_SLSH       , KC_BSLS,
     // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+------+------------+--------+---------------+----------
