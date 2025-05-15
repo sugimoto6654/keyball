@@ -31,7 +31,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
 
     switch (keycode) {
         case CPY_C:
-            if (record->event.pressed) {
+            if (recored->event.pressed) {
                 c_timer = timer_read();
             } else {
                 if (timer_elapsed(c_timer) < TAPPING_TERM) {
