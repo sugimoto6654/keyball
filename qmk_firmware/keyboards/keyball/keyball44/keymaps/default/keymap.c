@@ -24,10 +24,14 @@ enum {
     CPY_C,
     PST_V,
     CUT_X,
+    SCH_S,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
     static uint16_t c_timer = 0;
+    static uint16_t v_timer = 0;
+    static uint16_t x_timer = 0;
+    static uint16_t s_timer = 0;
 
     switch (keycode) {
         case CPY_C:
@@ -41,6 +45,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                 }
             }
             return false;
+        case PST_V:
+            if (recored->event.pressed) {
+                v_timer = timer_read();
+            } else {
+                if (timer_elapsed(v_timer) < TAPPING_TERM) {
+                    tap_code(KC_V);
+                } else {
+                    tap_code16(LCTL(KC_V));
+                }
+            }
+        case CUT_X:
+            if (recored->event.pressed) {
+                x_timer = timer_read();
+            } else {
+                if (timer_elapsed(x_timer) < TAPPING_TERM) {
+                    tap_code(KC_X);
+                } else {
+                    tap_code16(LCTL(KC_X));
+                }
+            }
+        case SCH_S:
+            if (recored->event.pressed) {
+                s_timer = timer_read();
+            } else {
+                if (timer_elapsed(s_timer) < TAPPING_TERM) {
+                    tap_code(KC_S);
+                } else {
+                    tap_code16(KC_WSCH);
+                }
+            }
     }
     return true;
 }
@@ -49,27 +83,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [0] = LAYOUT_universal(
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
-        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , KC_T  ,                              KC_Y          , KC_U, KC_I   , KC_O   , KC_P          , KC_MINS,
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
-        KC_TAB        , KC_A, KC_S   , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, KC_K   , KC_L   , LT(3, KC_SCLN), KC_QUOT,
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
-        KC_LSFT       , KC_Z, KC_X   , CPY_C  , KC_V           , KC_B  ,                              KC_N          , KC_M, KC_COMM, KC_DOT , KC_SLSH       , KC_BSLS,
-    // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+-----+--------+--------+---------------+----------
-                              KC_LALT, KC_LGUI, LCTL_T(KC_LNG2), KC_SPC, LT(2, KC_LNG1),     KC_BSPC, LT(1, KC_ENT),       XXXXXXX, XXXXXXX, KC_PSCR
-    //                       --------+--------+----------------+-------+----------------     -------+--------------+     +--------+--------+----------------
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
+        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , KC_T  ,                              KC_Y          , KC_U, KC_I       , KC_O   , KC_P          , KC_MINS,
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
+        KC_TAB        , KC_A, SCH_S  , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, LT(3, KC_K), KC_L   , LT(3, KC_SCLN), KC_QUOT,
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
+        KC_LSFT       , KC_Z, CUT_X  , CPY_C  , PST_V          , KC_B  ,                              KC_N          , KC_M, KC_COMM    , KC_DOT , KC_SLSH       , KC_BSLS,
+    // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+------+------------+--------+---------------+----------
+                              KC_LALT, KC_LGUI, LCTL_T(KC_LNG2), KC_SPC, LT(2, KC_LNG1),     KC_BSPC, LT(1, KC_ENT),       XXXXXXX     , XXXXXXX, KC_PSCR
+    //                       --------+--------+----------------+-------+----------------     -------+--------------+      +------------+--------+----------------
   ),
 
   [1] = LAYOUT_universal(
-    // --------+------+-------+--------+--------+--------+                     +--------+--------+--------+--------+--------+----------
-        _______, KC_F1, KC_F2 , KC_F3  , KC_F4  , XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    // --------+------+-------+--------+--------+--------+                     +--------+--------+--------+--------+--------+----------
-        _______, KC_F5, KC_F6 , KC_F7  , KC_F8  , XXXXXXX,                       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_BTN3, XXXXXXX,
-    // --------+------+-------+--------+--------+--------+                     +--------+--------+--------+--------+--------+----------
-        _______, KC_F9, KC_F10, KC_F11 , KC_F12 , XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    // --------+------+-------+--------+--------+--------+---------     -------+--------+--------+--------+--------+--------+----------
-                       _______, _______, _______, _______, _______,     _______, _______,          XXXXXXX, XXXXXXX, _______
-    //                --------+--------+--------+--------+---------     -------+--------+        +--------+--------+---------
+    // --------+------+-------+--------+--------+--------+                     +--------------+--------------+------------+--------------+--------+----------
+        _______, KC_F1, KC_F2 , KC_F3  , KC_F4  , XXXXXXX,                       KC_VOLD      , KC_VOLU      , KC_BRID    , KC_BRIU      , XXXXXXX, XXXXXXX,
+    // --------+------+-------+--------+--------+--------+                     +--------------+--------------+------------+--------------+--------+----------
+        _______, KC_F5, KC_F6 , KC_F7  , KC_F8  , XXXXXXX,                       KC_LEFT      , KC_DOWN      , KC_UP      , KC_RGHT      , KC_BTN3, XXXXXXX,
+    // --------+------+-------+--------+--------+--------+                     +--------------+--------------+------------+--------------+--------+----------
+        _______, KC_F9, KC_F10, KC_F11 , KC_F12 , XXXXXXX,                       LCTL(KC_LEFT), LCTL(KC_DOWN), LCTL(KC_UP), LCTL(KC_RGHT), XXXXXXX, XXXXXXX,
+    // --------+------+-------+--------+--------+--------+---------     -------+--------------+--------------+------------+--------------+--------+----------
+                       _______, _______, _______, _______, _______,     _______, _______      ,                XXXXXXX    , XXXXXXX      , _______
+    //                --------+--------+--------+--------+---------     -------+--------------+              +------------+--------------+---------
   ),
 
   [2] = LAYOUT_universal(
