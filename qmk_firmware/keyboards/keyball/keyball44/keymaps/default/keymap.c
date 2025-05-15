@@ -161,8 +161,8 @@ void oledkit_render_info_user(void) {
 }
 #endif
 
-const uint16_t PROGMEM mouse_click1[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM mouse_click2[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM mouse_click1[] = {KC_J, LT(3, KC_K), COMBO_END};
+const uint16_t PROGMEM mouse_click2[] = {LT(3, KC_K), KC_L, COMBO_END};
 const uint16_t PROGMEM mouse_click4[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM mouse_click5[] = {KC_COMM, KC_DOT, COMBO_END};
 combo_t key_combos[] = {
