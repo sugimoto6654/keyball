@@ -37,7 +37,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
                 if (timer_elapsed(c_timer) < TAPPING_TERM) {
                     tap_code(KC_C);
                 } else {
-                    tap_code(KC_COPY);
+                    tap_code16(LCTL(KC_C));
                 }
             }
             return false;
