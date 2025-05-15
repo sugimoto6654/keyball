@@ -26,7 +26,7 @@ enum {
     CUT_X,
 }
 
-bool process_record_user(uint16 keycode, keyrecord_t *recored) {
+bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
     static uint16_t c_timer = 0;
 
     switch (keycode) {
