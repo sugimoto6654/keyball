@@ -20,54 +20,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-enum {
-    CPY_C,
-    PST_V,
-    CUT_X,
-};
+// enum {
+//     CPY_C,
+//     PST_V,
+//     CUT_X,
+// };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
-    static uint16_t c_timer = 0;
-    static uint16_t v_timer = 0;
-    static uint16_t x_timer = 0;
+// bool process_record_user(uint16_t keycode, keyrecord_t *recored) {
+//     static uint16_t c_timer = 0;
+//     static uint16_t v_timer = 0;
+//     static uint16_t x_timer = 0;
 
-    switch (keycode) {
-        case CPY_C:
-            if (recored->event.pressed) {
-                c_timer = timer_read();
-            } else {
-                if (timer_elapsed(c_timer) < TAPPING_TERM) {
-                    tap_code(KC_C);
-                } else {
-                    tap_code16(LCTL(KC_C));
-                }
-            }
-            return false;
-        case PST_V:
-            if (recored->event.pressed) {
-                v_timer = timer_read();
-            } else {
-                if (timer_elapsed(v_timer) < TAPPING_TERM) {
-                    tap_code(KC_V);
-                } else {
-                    tap_code16(LCTL(KC_V));
-                }
-            }
-            return false;
-        case CUT_X:
-            if (recored->event.pressed) {
-                x_timer = timer_read();
-            } else {
-                if (timer_elapsed(x_timer) < TAPPING_TERM) {
-                    tap_code(KC_X);
-                } else {
-                    tap_code16(LCTL(KC_X));
-                }
-            }
-            return false;
-    }
-    return true;
-}
+//     switch (keycode) {
+//         case CPY_C:
+//             if (recored->event.pressed) {
+//                 c_timer = timer_read();
+//             } else {
+//                 if (timer_elapsed(c_timer) < TAPPING_TERM) {
+//                     tap_code(KC_C);
+//                 } else {
+//                     tap_code16(LCTL(KC_C));
+//                 }
+//             }
+//             return false;
+//         case PST_V:
+//             if (recored->event.pressed) {
+//                 v_timer = timer_read();
+//             } else {
+//                 if (timer_elapsed(v_timer) < TAPPING_TERM) {
+//                     tap_code(KC_V);
+//                 } else {
+//                     tap_code16(LCTL(KC_V));
+//                 }
+//             }
+//             return false;
+//         case CUT_X:
+//             if (recored->event.pressed) {
+//                 x_timer = timer_read();
+//             } else {
+//                 if (timer_elapsed(x_timer) < TAPPING_TERM) {
+//                     tap_code(KC_X);
+//                 } else {
+//                     tap_code16(LCTL(KC_X));
+//                 }
+//             }
+//             return false;
+//     }
+//     return true;
+// }
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
         KC_TAB        , KC_A, KC_S   , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, LT(3, KC_K), KC_L   , LT(3, KC_SCLN), KC_QUOT,
     // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        KC_LSFT       , KC_Z, CUT_X  , CPY_C  , PST_V          , KC_B  ,                              KC_N          , KC_M, KC_COMM    , KC_DOT , KC_SLSH       , KC_BSLS,
+        KC_LSFT       , KC_Z, KC_X   , KC_C   , KC_V           , KC_B  ,                              KC_N          , KC_M, KC_COMM    , KC_DOT , KC_SLSH       , KC_BSLS,
     // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+------+------------+--------+---------------+----------
                               KC_LALT, KC_LGUI, LCTL_T(KC_LNG2), KC_SPC, LT(2, KC_LNG1),     KC_BSPC, LT(1, KC_ENT),       XXXXXXX     , XXXXXXX, KC_PSCR
     //                       --------+--------+----------------+-------+----------------     -------+--------------+      +------------+--------+----------------
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // --------+------+-------+--------+--------+--------+                     +--------------+--------------+------------+--------------+--------+----------
         _______, KC_F5, KC_F6 , KC_F7  , KC_F8  , XXXXXXX,                       KC_LEFT      , KC_DOWN      , KC_UP      , KC_RGHT      , KC_BTN3, XXXXXXX,
     // --------+------+-------+--------+--------+--------+                     +--------------+--------------+------------+--------------+--------+----------
-        _______, KC_F9, KC_F10, KC_F11 , KC_F12 , XXXXXXX,                       LCTL(KC_LEFT), LCTL(KC_DOWN), LCTL(KC_UP), LCTL(KC_RGHT), XXXXXXX, XXXXXXX,
+        _______, KC_F9, KC_F10, KC_F11 , KC_F12 , XXXXXXX,                       LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RGHT), XXXXXXX, XXXXXXX,
     // --------+------+-------+--------+--------+--------+---------     -------+--------------+--------------+------------+--------------+--------+----------
                        _______, _______, _______, _______, _______,     _______, _______      ,                XXXXXXX    , XXXXXXX      , _______
     //                --------+--------+--------+--------+---------     -------+--------------+              +------------+--------------+---------
