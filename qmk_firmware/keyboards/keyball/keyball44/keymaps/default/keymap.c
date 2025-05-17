@@ -73,15 +73,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [0] = LAYOUT_universal(
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , KC_T  ,                              KC_Y          , KC_U, KC_I       , KC_O   , KC_P          , KC_MINS,
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        KC_TAB        , KC_A, KC_S   , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, LT(3, KC_K), KC_L   , LT(3, KC_SCLN), KC_QUOT,
-    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+------------+--------+---------------+----------
-        KC_LSFT       , KC_Z, KC_X   , KC_C   , KC_V           , KC_B  ,                              KC_N          , KC_M, KC_COMM    , KC_DOT , KC_SLSH       , KC_BSLS,
-    // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+------+------------+--------+---------------+----------
-                              KC_LALT, KC_LGUI, LCTL_T(KC_LNG2), KC_SPC, LT(2, KC_LNG1),     KC_BSPC, LT(1, KC_ENT),       XXXXXXX     , XXXXXXX, KC_PSCR
-    //                       --------+--------+----------------+-------+----------------     -------+--------------+      +------------+--------+----------------
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
+        LT(4, KC_ESC) , KC_Q, KC_W   , KC_E   , KC_R           , KC_T  ,                              KC_Y          , KC_U, KC_I   , KC_O   , KC_P          , KC_MINS,
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
+        KC_TAB        , KC_A, KC_S   , KC_D   , KC_F           , KC_G  ,                              KC_H          , KC_J, KC_K   , KC_L   , LT(3, KC_SCLN), KC_QUOT,
+    // ---------------+-----+--------+--------+----------------+-------+                             +--------------+-----+--------+--------+---------------+----------
+        KC_LSFT       , KC_Z, KC_X   , KC_C   , KC_V           , KC_B  ,                              KC_N          , KC_M, KC_COMM, KC_DOT , KC_SLSH       , KC_BSLS,
+    // ---------------+-----+--------+--------+----------------+-------+----------------     -------+--------------+------+--------+--------+---------------+----------
+                              KC_LALT, KC_LGUI, LCTL_T(KC_LNG2), KC_SPC, LT(2, KC_LNG1),     KC_BSPC, LT(1, KC_ENT),        XXXXXXX, XXXXXXX, KC_PSCR
+    //                       --------+--------+----------------+-------+----------------     -------+--------------+      +--------+--------+----------------
   ),
 
   [1] = LAYOUT_universal(
@@ -151,8 +151,8 @@ void oledkit_render_info_user(void) {
 }
 #endif
 
-const uint16_t PROGMEM mouse_click1[] = {KC_J, LT(3, KC_K), COMBO_END};
-const uint16_t PROGMEM mouse_click2[] = {LT(3, KC_K), KC_L, COMBO_END};
+const uint16_t PROGMEM mouse_click1[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM mouse_click2[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM mouse_click4[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM mouse_click5[] = {KC_COMM, KC_DOT, COMBO_END};
 combo_t key_combos[] = {
